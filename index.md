@@ -1,3 +1,9 @@
+---
+title: The Meeting Shoinx
+layout: template
+filename: index.md
+--- 
+
 ## Proposal:
 
 Privacy is one of the most important concerns of people today. With the growing use of online platforms, remote meetings have become an integral part of everyday life with being used for conducting online classes, video conferences, streaming and a large number of other activities. Thus, ensuring the privacy of the speaker becomes a very important task.

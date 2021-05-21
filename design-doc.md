@@ -1,3 +1,8 @@
+---
+title: Design Doculment
+layout: template
+filename: design-doc.md
+--- 
 # Design Document
 
 ## Summary

@@ -1,7 +1,7 @@
 ---
-title: The Meeting Shoinx
-layout: template
-filename: index.md
+title: The Meeting Shpinx
+layout: default
+filename: index
 --- 
 
 ## Proposal:

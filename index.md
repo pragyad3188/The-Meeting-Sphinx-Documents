@@ -4,7 +4,7 @@ layout: default
 filename: index
 --- 
 
- [Home Page](index) [Design Document](design-doc)
+[Home Page](index) [Project Proposal](pp) [Feasibility Study](fs) [Design Document](design-doc)
 
 # Final Report
 

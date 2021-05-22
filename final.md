@@ -1,9 +1,9 @@
 ---
 title: The Meeting Sphinx
 layout: default
-filename: index
+filename: final
 --- 
-| [Home Page](index) | [Project Proposal](pp) | [Feasibility Study](fs) | [Design Document](design-doc) |
+| [Home Page](index) | [Project Proposal](pp) | [Feasibility Study](fs) | [Design Document](design-doc) | [Final Report](final) |
               
 
 # Final Report

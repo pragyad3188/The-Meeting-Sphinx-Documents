@@ -25,42 +25,36 @@ Thus the security of all users is established.
 ## Use Case Diagram of The Meeting Sphinx
 
 ![](images/design_1.png)
-Use Case Diagram
+<div style="text-align: center;"><span><i>Use Case Diagram</i></span></div>
 
 ### Description of use cases:
 
-1.
-### Login
+1.**Login**
 
-  1. Mainline Sequence:
+  a. Mainline Sequence:
     1. User clicks on the &#39;Log in with Google&#39; Button, and is redirected to a Google webpage.
     2. User logs into his google account and approves our app to be trusted with the user&#39;s google profile information.
     3. After logging into google, the user will be redirected back to our app&#39;s home page.
-  2. At step ii of Mainline Sequence
+  b. At step ii of Mainline Sequence
     1. Credentials entered by the user was incorrect and login fails
     2. User is redirected to the login page to re enter credentials
-2.
-### Logout
-
-  1. Mainline Sequence:
+2.**Logout**
+  a. Mainline Sequence:
     1. When a user clicks the logout button, a request is sent to the backend to log him out. Then, at the backend, his session is deleted and hence, he/she is logged out of our app.
 
-1.
-### Create Meeting
-
-  1. Mainline sequence -1: App is used as a third party app
+3.**Create Meeting**
+  a. Mainline sequence -1: App is used as a third party app
     1. When the user creates a meeting, a random code is generated for that particular meeting and details of that meeting with its creator, description, etc. are stored in the backend.
     2. We give the user the function to upload a custom third-party meeting url into an input box. Users will be redirected to this meeting url once they enter the code generated in the first part.
-  2. Mainline sequence - 2: Meeting is held in our app platform
+  b. Mainline sequence - 2: Meeting is held in our app platform
  (If the creator wants to use our web conferencing platform to host his / her meeting, he / she need not fill that meeting link box. )
     1. App: A custom url for the meeting will be generated and associated with the meeting automatically.
     2. Organiser: Meeting link is shared with the attendees
     3. Attendee:Enters the code for a meeting that is hosted on our platform
     4. Attendee will be redirected to our platform once his credentials are validated.
-2.
-### Attend Meeting
+4. **Attend Meeting**
 
-  1. Mainline Sequence:
+  a. Mainline Sequence:
     1. The attendee will use the lobby code to enter the lobby.
     2. The backend finds the room that corresponds to the entered code.
     3. If a valid meeting is found, then the user is redirected to the meeting lobby.
@@ -68,36 +62,35 @@ Use Case Diagram
     5. The information on screen recording is relayed back to the organiser&#39;s screen.
     6. Attendees of the meeting can send messages in the meeting chat.
     7. The meeting can be ended by the organiser.
-  2. Step iii of mainline sequence
+  b. Step iii of mainline sequence
     1. If a meeting is not found, the user is redirected back to the home page.
 
-1.
-### Video Call ( For meetings held in our app )
+5.**Video Call ( For meetings held in our app )**
 
-  1. Mainline Sequence:
+  a. Mainline Sequence:
     1. Users will allow our software access to their camera.
     2. Users can view other attendees&#39; videos by clicking on the see attendee videos button
-  2. At the ii step of Mainline Sequence:
+  b. At the ii step of Mainline Sequence:
     1. Users either don&#39;t allow access to the camera or their camera is being used by some other application.
     2. User is redirected to the home page of our app ( for our app meetings )
 
 ## Class Diagram of our Backend
 
 ![](images/design_2.png)
-Class Diagram <br>
-This shows the inheritance and other relationships between the models(database) that we have made.
+<div style="text-align: center;"><span><i>Class Diagram <br> This shows the inheritance and other relationships between the models(database) that we have made.</i></span></div>
+
 
 ## Class Diagram of our Frontend
 
 ![](images/design_3.jpeg)
-The class diagram of our app frontend<br>
-You can observe the various association relationships between classes
+<div style="text-align: center;"><span><i>The class diagram of our app frontend<br>
+You can observe the various association relationships between classes. </i></span></div>
 
 ## Flow Chart
 
 ![](images/design_4.png)
-Flow chart<br>
-The Final document of our app shows the implementation of each flow and how things are working.
+<div style="text-align: center;"><span><i>Flow chart<br> The Final document of our app shows the implementation of each flow and how things are working.</i></span></div>
+
 
 ## Low level design
 
@@ -178,8 +171,7 @@ When a new user logs into our app. He/She would have two options -- Create an Ne
 - Now the connection is established and peer1 and peer2 can share each other&#39;s stream
 
 ![](images/design_5.png)
-Peer-to-Peer connection <br>
-This diagram shows the 3-way handshake that is done in establishing a connection between 2 Peers which then can share each other&#39;s media
+<div style="text-align: center;"><span><i>Peer-to-Peer connection <br>This diagram shows the 3-way handshake that is done in establishing a connection between 2 Peers which then can share each other's media.</i></span></div>
 
 ## Ban a user
 

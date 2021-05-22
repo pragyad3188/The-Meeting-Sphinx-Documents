@@ -28,9 +28,6 @@ We have made our app in a highly modular manner conforming to the various princi
 
 Software Engineering and using the best practices wherever possible. The code has been thoroughly tested and reviewed to resolve all possible bugs. One of the main features being extensibility, we can add a large number of features in the later releases of our app by simply adding the modules for the same, without having to change the current code base significantly. This report contains a detailed description of the working and various features provided by our app.
 
-##
-
-
 ## Quick overview of working of our app
 
 - Firstly, a user can login to our app using his/her Google accounts and lands into our home page after a successful login.
@@ -43,9 +40,6 @@ Software Engineering and using the best practices wherever possible. The code ha
 - Users of our app can also chat in the lobby using the chat section provided. This could be used to convey information to attendees while conducting an online class.
 - Our app also provides the organiser to ban any attendee from the meeting, in which case the user banned can&#39;t rejoin the meeting again.
 - Finally, all the meetings organised can be viewed in the custom dashboard of our app. If the person is the meeting organiser, he/she can also see the meeting details of previous meetings including data about recording and attendance of users in the meeting.
-
-##
-
 
 ## Tech Stack used in the project
 
@@ -92,11 +86,7 @@ As we saw above that when screen recorders are active, some system processes run
 
 ![](images/sphinx_1.png)
 
-Our Recording Detection script written for testing.
-
 ![](images/sphinx_2.png)
-
-Testing our Recording Detection Script
 
 Two lists are maintained **standardRecorders** , that contains the names of processes that execute when recorders start their recording and **recordersDetected** , that contains all the recorders that are currently active (this list is required, such that repeated detection of same recorders doesn&#39;t notify repeatedly). The **checkNewRecorders()** function checks for new screen recorders. It first scans all the system processes using **ps-list** and checks whether they belong to the list of _standardRecorders_ and if found, it checks for them in _recordersDetected_ list. In case a new recorder is found, it logs &quot;Detected screen recording&quot; (for now, later we will make an api request to the backend during integration of the script) . The **updateRecorders()** function, checks if a recorder that was already recording has now stopped doing the same or not and updates the _recordersDetected_ list accordingly. It logs &quot;Recording still ongoing&quot; when the processes detected earlier are still present. Lastly, the **hasRecordingStopped()** function is used to check if no recorders are found in the processes of the user or not and logs &quot;No recorders found&quot; for the same. In this manner, we were able to completely detect the starting of recording, recording done using multiple screen recorders and the end of recording as well. After completely testing the successful run of our software, it was integrated into the application.
 
@@ -109,15 +99,9 @@ So, our script needs to communicate with the frontend somehow to achieve the sam
 The message sent to the backend has details about the user and the meeting. These all details were obtained from the session cookies set in the electron app. Using these cookies the data for the message was set. The message is set using WebSockets that were set up for chat.
 
 ![](images/sphinx_3.png)
-
-The notification of recording to users in a meeting
-
 _Here as you can see that the user that started the recording has been marked as red and a chat message regarding the notification has also shown up._
 
 ![](images/sphinx_4.png)
-
-Recording stopped notification
-
 _As the recording stopped, the user was unmarked and the chat notification regarding stopping of recording was sent as well._
 
 ### What if the user has already started recording before joining any meeting?
@@ -204,8 +188,6 @@ After that they click create the meeting.
 
 ![](images/sphinx_5.png)
 
-Create a New Meeting
-
 ### How meeting creation is handled by our app
 
 First off, we must be able to tell the meetings whose video conference will be held on our app apart from the meetings whose conference will be held on a different app. If the creator chooses to enter a meeting link by himself, then we simply store that link. However, if the user chooses to hold the video conference on our app, then we store a dummy value as the meeting link. Since this is not a valid URL, we will not face any clashes in the custom meeting links entered by the users.
@@ -227,8 +209,6 @@ A unique meeting code is generated. A new meeting instance is created with the m
 The creator is then redirected to the lobby page for the meeting where he can wait for the attendees to join.
 
 ![](images/sphinx_6.png)
-
-Joining an existing meeting
 
 ## Join a Meeting
 
@@ -272,8 +252,6 @@ Everytime the dashboard is called, it requests the backend the Meeting details o
 
 ![](images/sphinx_7.png)
 
-Our meeting dashboard
-
 ### Previous Meetings
 
 In the dashboard section of home, the user is displayed with a set of Meetings he is currently present in and also the list of meetings he has previously attended or organised.
@@ -286,13 +264,9 @@ When the user clicks on the &#39;SeeDetails&#39; button of a specific meeting, t
 
 ![](images/sphinx_8.png)
 
-All past meetings are shown in the dashboard. The organiser can view meeting details of past meetings as well
-
 Now we receive the details, title, organisers, attendees, start\_time and end\_time of the meet, recordings, meeting\_id and render it to the See Details page. The attendance and recorded details can be obtained from here.
 
 ![](images/sphinx_9.png)
-
-Dashboard showing details of a past meeting.
 
 As you can see the meeting logs can be found with recording details too.
 
@@ -321,16 +295,11 @@ user
 }
 
 ![](images/sphinx_10.png)
-
-The user can even join an ongoing meeting from the dashboard itself.
-
 In this component a websocket connection named **chatWebSocket** is initiated so that we can get to know which user is entering or exiting the meeting.
 
 At the backend in the Chat consumer a function **connect()** is there which accepts or closes this websocket connection based on some logic like if the user is not in the members of the meeting then close this socket otherwise accept it. After accepting the connection we decided to show all the messages that were sent in that meeting even prior to this user joining. For this from all the objects of the **Message** model, messages of this particular meeting are filtered out. These filtered messages are then sorted by the **sent\_time**. These messages are then serialized and are sent to the frontend with a control type which initializes the chat with all the messages sent prior to this user joining.
 
 ![](images/sphinx_11.png)
-
-The component in the right represents the chat box.
 
 The user chat messages and recording notifications can be found in the chat component
 
@@ -427,7 +396,7 @@ The following steps are taken to initiate a peer connection between two users:
 
 ## Flow Chart of The Meeting Sphinx:
 
-## ![](images/sphinx_1.png) 
+## ![](images/sphinx_16.png) 
 ## Backend
 
 Our backend is based on a python framework, Django. Django is a robust tool which simplifies most of the tasks involved in creating a fully functional and easily shippable backend. The Django ORM serves as an excellent mapping between the database and the python class system, thus, making it very easy to implement object oriented concepts in relational databases. Also, we use postgreSQL as our database server as it provides excellent features for deployment and is robust enough to sustain the sheer volume of requests generated by the Django ORM. Core django is based on MVT architecture.

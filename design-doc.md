@@ -1,5 +1,5 @@
 ---
-title: Design Doculment
+title: Design Document
 layout: default
 filename: design-doc
 --- 
@@ -39,7 +39,9 @@ Thus the security of all users is established.
   2. At step ii of Mainline Sequence
       1. Credentials entered by the user was incorrect and login fails
       2. User is redirected to the login page to re enter credentials
+
 2.**Logout**
+  
   1. Mainline Sequence:
       1. When a user clicks the logout button, a request is sent to the backend to log him out. Then, at the backend, his session is deleted and hence, he/she is logged out of our app.
 

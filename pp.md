@@ -1,5 +1,5 @@
 ---
-title: Feasibility Study
+title: Project Proposal
 layout: default
 filename: pp
 ---

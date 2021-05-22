@@ -6,7 +6,7 @@ filename: index
 
  [Home Page](index) [Design Document](design-doc)
 
-#Final Report
+# Final Report
 
 ## Proposal:
 

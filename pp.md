@@ -3,8 +3,7 @@ title: Feasibility Study
 layout: default
 filename: pp
 ---
-|[Home Page](index)| [Project Proposal](pp) | [Feasibility Study](fs) | [Design Document](design-doc) |
-|--|--|--|--|
+| [Home Page](index) | [Project Proposal](pp) | [Feasibility Study](fs) | [Design Document](design-doc) |
 
 # Our Proposal
 

@@ -1,10 +1,12 @@
 ---
-title: The Meeting Shpinx
+title: The Meeting Sphinx
 layout: default
 filename: index
 --- 
 
  [Home Page](index) [Design Document](design-doc)
+
+#Final Report
 
 ## Proposal:
 
@@ -12,7 +14,7 @@ Privacy is one of the most important concerns of people today. With the growing 
 
 Our app, **The Meeting Sphinx** is a platform to conduct **secure** meetings ensuring the privacy of anyone who wishes to conduct an online meeting.
 
-In a normal meeting, the users have no way to know if anyone recorded their meeting without their knowledge. Sometimes, people may state some things casually, with a good motif, that might be used against them in a harmful manner. Thus, an app that detects such uninformed meeting recordings by its users can help solve this major problem and prevent such misuse of privacy of the speaker.
+In a normal meeting, the users have no way to know if anyone recorded their meeting without their knowledge. Sometimes, people may state some things casually, with a good motive, that might be used against them in a harmful manner. Thus, an app that detects such uninformed meeting recordings by its users can help solve this major problem and prevent such breach of privacy of the speaker.
 
 The Meeting Sphinx is based on this very idea and can detect recording by any person who attends the meeting. It then notifies the people attending the meeting along with the details of the recording along with the user who started the same. Thus, the speaker would be vigilant and their privacy preserved.
 
@@ -25,6 +27,25 @@ _Thus the security of all users is established._
 We have made our app in a highly modular manner conforming to the various principles of
 
 Software Engineering and using the best practices wherever possible. The code has been thoroughly tested and reviewed to resolve all possible bugs. One of the main features being extensibility, we can add a large number of features in the later releases of our app by simply adding the modules for the same, without having to change the current code base significantly. This report contains a detailed description of the working and various features provided by our app.
+
+##
+
+
+## Quick overview of working of our app
+
+- Firstly, a user can login to our app using his/her Google accounts and lands into our home page after a successful login.
+- The user can then either choose to join in an ongoing meeting or can create a new meeting.
+- There are two ways of creating meetings, one in which our app would be used as a third party app for detection of recording by the attendees and notifying the organiser of the same. In this case, the user has to enter a valid URL in the custom meeting link to proceed. The second way is where the user can conduct his/her meetings in our app itself.
+- In both the cases above and also when the user joins a meeting after entering the meeting code, the user is redirected to our app lobby.
+- For the third party app meetings, the user has an option to &quot;Join Video Conference&quot;, clicking on which would redirect the user to the meeting.
+- Whenever the user is present in the lobby and is recording the meeting (detected by system processes that run while recorders are at work), the user is marked in red and also a notification is sent in the chat section of the lobby.
+- After recording is stopped by the user, another notification is given in the chat section with the user being unmarked at the same time.
+- Users of our app can also chat in the lobby using the chat section provided. This could be used to convey information to attendees while conducting an online class.
+- Our app also provides the organiser to ban any attendee from the meeting, in which case the user banned can&#39;t rejoin the meeting again.
+- Finally, all the meetings organised can be viewed in the custom dashboard of our app. If the person is the meeting organiser, he/she can also see the meeting details of previous meetings including data about recording and attendance of users in the meeting.
+
+##
+
 
 ## Tech Stack used in the project
 
@@ -57,17 +78,7 @@ Software Engineering and using the best practices wherever possible. The code ha
 - Shells - zsh, bash, sh
 - Operating Systems - Alpine Linux
 
-## Problem Specification:
-
-## Key Features:
-
-- This application is developed assuming our primary users are lecturers and students who want to conduct online classes via one&#39;s desired meeting platforms, and also parallely ensure that no one is recording the meeting.
-- The user directly login to our app using one of his/her Google accounts.
-- Organiser holds the meeting in the same app or his/her desired external applications like Microsoft Teams, Google Meet etc.
-- Recording detection starts immediately after the user logs into this app and the recording details will be obtained to the organiser of the meeting he joins later.
-- Attendance of students can be taken from this app itself, ensuring that students are marked attended, if only he/she joins the meeting after logging into our app.
-
-## Description / flow of Implementation:
+## Description of Implementation:
 
 ## Recording Detection
 
@@ -79,11 +90,11 @@ Designing a recording detection software was challenging, as it has never been p
 
 As we saw above that when screen recorders are active, some system processes run continuously to achieve the same. So, our algorithm needs to determine these system processes. For this an npm package, [**ps-list**](https://www.npmjs.com/package/ps-list) was used. It lists all the running processes in an Operating System. Firstly, to develop the software, we did a test-run of our algorithm with a code written in javascript. Three functions were devised in order to achieve the same.
 
-![](RackMultipart20210521-4-19z1xy7_html_345c092dbc1e3a21.png)
+![](images/sphinx_1.png)
 
 Our Recording Detection script written for testing.
 
-![](RackMultipart20210521-4-19z1xy7_html_bf03c8aed883da0a.png)
+![](images/sphinx_2.png)
 
 Testing our Recording Detection Script
 
@@ -97,13 +108,13 @@ So, our script needs to communicate with the frontend somehow to achieve the sam
 
 The message sent to the backend has details about the user and the meeting. These all details were obtained from the session cookies set in the electron app. Using these cookies the data for the message was set. The message is set using WebSockets that were set up for chat.
 
-![](RackMultipart20210521-4-19z1xy7_html_61b3c9a3b3046543.png)
+![](images/sphinx_3.png)
 
 The notification of recording to users in a meeting
 
 _Here as you can see that the user that started the recording has been marked as red and a chat message regarding the notification has also shown up._
 
-![](RackMultipart20210521-4-19z1xy7_html_2066c4d705f7c4f9.png)
+![](images/sphinx_4.png)
 
 Recording stopped notification
 
@@ -191,7 +202,7 @@ If they wish to hold their video conference on a third party application, they e
 
 After that they click create the meeting.
 
-![](RackMultipart20210521-4-19z1xy7_html_8406db2559bfb331.png)
+![](images/sphinx_5.png)
 
 Create a New Meeting
 
@@ -215,13 +226,13 @@ A unique meeting code is generated. A new meeting instance is created with the m
 
 The creator is then redirected to the lobby page for the meeting where he can wait for the attendees to join.
 
+![](images/sphinx_6.png)
+
+Joining an existing meeting
+
 ## Join a Meeting
 
 To join a meeting, the user clicks on the &#39;Join a Meeting&#39; button on the home page, and enters the corresponding meeting\_code. If the meeting code is valid, the user joins the meeting.
-
-![](RackMultipart20210521-4-19z1xy7_html_658d4125e58c1905.png)
-
-Joining an existing meeting
 
 ### How is this handled on our backend?
 
@@ -251,7 +262,7 @@ Only the organiser of a meeting has the permission to ban or remove a user form 
 
 ## App Dashboard
 
-Users will also be provided a &#39;Dashboard&#39; option on the home page which include details of meetings he is currently in and also previous meetings.
+Users will also be provided a &#39;Dashboard&#39; option on the home page which include details of meetings he is currently in and also previous meetings he attended.
 
 Keeping in mind that the primary use of our app is to hold lectures etc. for online classes, we tried to include some of the key features like listing the attendance in every meeting, listing the attendees who have recorded the meeting.
 
@@ -259,7 +270,7 @@ Also every user can join or create multiple meetings at the same time. So the us
 
 Everytime the dashboard is called, it requests the backend the Meeting details of that user from the url **apiGetMyMeetings( )**,where the list of details of past meetings and current meetings is stored. This contains the information **past\_meetings** , **ongoing\_meetings**.
 
-![](RackMultipart20210521-4-19z1xy7_html_812570dd9f6f6e3b.png)
+![](RackMultipart20210522-4-ndw0u4_html_812570dd9f6f6e3b.png)
 
 Our meeting dashboard
 
@@ -273,13 +284,13 @@ Now, the title of the meeting along with the option &#39;SeeDetails&#39; is prov
 
 When the user clicks on the &#39;SeeDetails&#39; button of a specific meeting, the details of that meeting is obtained from the url**apiMeetingDetails( )** by the given id of the meeting.
 
-![](RackMultipart20210521-4-19z1xy7_html_7fc261d3b63ee00e.png)
+![](RackMultipart20210522-4-ndw0u4_html_7fc261d3b63ee00e.png)
 
 All past meetings are shown in the dashboard. The organiser can view meeting details of past meetings as well
 
 Now we receive the details, title, organisers, attendees, start\_time and end\_time of the meet, recordings, meeting\_id and render it to the See Details page. The attendance and recorded details can be obtained from here.
 
-![](RackMultipart20210521-4-19z1xy7_html_96dfcc40b7664ec6.png)
+![](RackMultipart20210522-4-ndw0u4_html_96dfcc40b7664ec6.png)
 
 Dashboard showing details of a past meeting.
 
@@ -295,13 +306,9 @@ Now, the title of the meeting along with the option &#39;Join&#39; is provided t
 
 When the user clicks on the &#39;Join&#39; button of a specific meeting, the user is redirected to the lobby of that specific meeting using the obtained meeting code. We have also ensured that users can always redirect back to the home from any of these pages.
 
-![](RackMultipart20210521-4-19z1xy7_html_812570dd9f6f6e3b.png)
-
-The user can even join an ongoing meeting from the dashboard itself.
-
 **Chat in Lobby**
 
-A Chat component is created for the frontend implementation of Chat.
+A **Chat** component is created for the frontend implementation of Chat.
 
 This component is rendered in the lobby with following data:
 
@@ -313,11 +320,15 @@ user
 
 }
 
-In this component a websocket connection named chatWebSocket is initiated so that we can get to know which user is entering or exiting the meeting.
+![](RackMultipart20210522-4-ndw0u4_html_812570dd9f6f6e3b.png)
 
-At the backend in the Chat consumer a function **connect()** is there which accepts or closes this websocket connection based on some logic like if the user is not in the members of the meeting then close this socket otherwise accept it. After accepting the connection we decided to show all the messages that were sent in that meeting even prior to this user joining, so for this from all the objects of the Message model, messages of this particular meeting are filtered out and are then sorted by the sent\_time. These messages are then serialized and are sent to the frontend with a control type which initializes the chat with all the messages sent prior to this user joining.
+The user can even join an ongoing meeting from the dashboard itself.
 
-![](RackMultipart20210521-4-19z1xy7_html_8abaaec432a9583e.png)
+In this component a websocket connection named **chatWebSocket** is initiated so that we can get to know which user is entering or exiting the meeting.
+
+At the backend in the Chat consumer a function **connect()** is there which accepts or closes this websocket connection based on some logic like if the user is not in the members of the meeting then close this socket otherwise accept it. After accepting the connection we decided to show all the messages that were sent in that meeting even prior to this user joining. For this from all the objects of the **Message** model, messages of this particular meeting are filtered out. These filtered messages are then sorted by the **sent\_time**. These messages are then serialized and are sent to the frontend with a control type which initializes the chat with all the messages sent prior to this user joining.
+
+![](RackMultipart20210522-4-ndw0u4_html_8abaaec432a9583e.png)
 
 The component in the right represents the chat box.
 
@@ -331,7 +342,7 @@ If this user wants to send a message then he/she can type in the input-box and t
 
 #### What if the user is not in the meeting but still trying to make a connection?
 
-When this socket is initialized it checks in the **connect()** at the backend if the user is in banned\_users if it is so then it closes the connection. If the user is not found in the list of Attendees or the Organizers of the Meeting then also the web socket connection is closed.
+When this socket is initialized it checks in the **connect()** at the backend if the user is in **banned\_users** if it is so then it closes the connection. If the user is not found in the list of Attendees or the Organizers of the Meeting then also the web socket connection is closed.
 
 ## Video Conference
 
@@ -388,7 +399,7 @@ An RTCPeerConnection (aka Peer Connection) is the connection between two users w
 
 As stated above, when a user joins the meeting, he gets a list of IDs of all the users in the meeting. It is his responsibility to connect to every other user in the meeting. Below is a simplified explanation of how a peer connection is established.
 
-![](RackMultipart20210521-4-19z1xy7_html_74c8cff1bd83b484.png)
+![](RackMultipart20210522-4-ndw0u4_html_74c8cff1bd83b484.png)
 
 The following steps are taken to initiate a peer connection between two users:
 
@@ -400,30 +411,31 @@ The following steps are taken to initiate a peer connection between two users:
 5. Now that the connection is established, the peers can share video and audio streams among each other.
 6. Each of the peers have event listeners on receiving streams. This stream is handled by our code. It channels the stream into the video elements on our device.
 
-##
-
-
 ## Design Diagrams:
 
 ## UseCase Diagram:
 
-![](RackMultipart20210521-4-19z1xy7_html_eb56b942b065c6d.png)
+![](RackMultipart20210522-4-ndw0u4_html_eb56b942b065c6d.png)
 
-## Class Diagram:
+## Class Diagram of Backend :
 
-![](RackMultipart20210521-4-19z1xy7_html_47b5a175d97938de.png)
+![](RackMultipart20210522-4-ndw0u4_html_47b5a175d97938de.png)
+
+**Class Diagram of Frontend:**
+
+## ![](RackMultipart20210522-4-ndw0u4_html_da88b5d245aa59ce.jpg)
 
 ## Flow Chart of The Meeting Sphinx:
 
-## ![](RackMultipart20210521-4-19z1xy7_html_3e5efadbc53f42b3.png) **Backend**
+## ![](RackMultipart20210522-4-ndw0u4_html_3e5efadbc53f42b3.png) **Backend**
 
 Our backend is based on a python framework, Django. Django is a robust tool which simplifies most of the tasks involved in creating a fully functional and easily shippable backend. The Django ORM serves as an excellent mapping between the database and the python class system, thus, making it very easy to implement object oriented concepts in relational databases. Also, we use postgreSQL as our database server as it provides excellent features for deployment and is robust enough to sustain the sheer volume of requests generated by the Django ORM. Core django is based on MVT architecture.
 
-### MVT Architecture
+## MVT Architecture
 
 MVT stands for Model-View-Template architecture. Here, models serve as an interface between the core django framework and the database querying system. We apply migrations to mirror our models (written in python) to the actual SQL schema that would be used in our database for making relations and attributes. Views serve as a logical abstraction in the MVT architecture. This is where all the requests are handled and all the logic for processing those requests are written. Next, we have templates. The templates are used to provide a user-friendly interface to the overall backend system. The core Django architecture, we use templates to serve frontend resources and views to serve backend resources on one and the same server. There are certain disadvantages to this approach. Here, the frontend and backend don&#39;t really have their individual identity and make up a generic &#39;web server&#39;. If any device wants to connect to our backend, it has to go through the UI and cannot access the resources from the database server optimally. Here comes the REST API or the RESTful API.
 
-### Models
+## Models
 
 - **User** - This model implements our actual user and stores his / her data. Various attributes of the user model are as follows
   - username - This is the username that we get from Google after the user gives access to his/her information to us via OAuth.
@@ -505,12 +517,8 @@ We had to restructure the dependencies for packaging our app. Initially we had t
 
 We wrote two scripts that build our app and then finally package it into a distribution like (.deb, .rpm or a snap). To make a release version of our app, one has to just run two commands one after another--
 
-|
 - npm run **preelectron-pack**
- |
 - npm run **dist:linux**
- |
-| --- | --- |
 
 After these commands a dist folder would be created with our app packaged into various types.
 
@@ -518,21 +526,27 @@ With our app being able to be packaged it increases its usability by manyfolds a
 
 ## Applications of Software:
 
-Now-a-days most of the meetings and classes are being held online using various platforms for video conferencing. These platforms are quite convenient and try to make the user experience as similar as possible to offline mode. But a problem exists with these softwares that any user can record the contents of the meeting without letting the speaker know. This violates the privacy of the speaker as a person might say something casually which he/she doesn&#39;t want to be recorded. Our application provides a solution to this problem as it notifies the organiser of the meeting whenever a person starts to record the meeting. Our software detects the processes that run when a screen recorder starts to record the screen. Once these processes are detected in the attendees&#39; system, our software notifies the meeting organiser of the same visually. Thus, using our application one can conduct meetings and online classes by teachers, students etc.
+This application has this distinguishing feature that makes it stand out from other available meeting applications in the market. So, this software is the best and the only available choice for the people who want to organize secure and confidential meetings.
 
-It is necessary that management of an organization must conduct itself to be effective so as to meet the expectations of operational transparency as well as to maintain confidentiality of information in order to foster a culture for good decision making. Organizations are expected to function in a transparent manner, but conducting business requires maintaining confidential information for legal and effectiveness reasons. Earlier, organizations conducted their meetings in a secure way by conducting meetings in a safe place. But in this online world, it would be really tough for them to maintain confidentiality in online meetings. Our application could be a boon for such organizations as it can detect whether attendees of the meeting are recording or not. Thus, it can be used by organizations or groups which want to maintain confidentiality for example companies , businessmen, groups of doctors, scientists, politicians etc.
+As this global pandemic right now doesn&#39;t allow us to have offline teachings, this software can be used by schools to organize online classes so that the teacher can get to know if any student is recording the lecture or not.
 
-Thus, our application can be used by different organizations as well as educational institutions and even by normal individuals to conduct safe and secure meetings as a platform to conduct virtual meetings or as a third party application to take attendance etc asit is necessary for each attendee to use this app.
+Also, our software doesn&#39;t bind the user to switch completely to a new platform from a traditional one with which he may be much more comfortable. Such users can use this software as a third party app and can continue their teaching without worrying about the students recording the lecture.
+
+Apart from hosting meetings and lectures, this software can be used as a live-streaming platform. We have encountered many incidents where the viewers record the Live-Streaming videos which are paid and then sell this recorded pirated video. To control this, our app can be modified a bit at the UI to render live-streaming videos, but the algorithm for recording detection remains the same and can enforce a better and secure hosting environment.
 
 ## Innovation of Software:
 
-Our application is one of a kind. It&#39;s uniqueness lies in the fact that no such app currently exists that performs the same functionality and can make meetings secure. Our software notifies the organiser of the meeting whenever a person starts to record the meeting. It detects the processes that run when a screen recorder starts to record the screen. Once these processes are detected in the attendees&#39; system, our software notifies the meeting organiser of the same visually. Thus, using our app one can conduct meetings and online classes with their privacy being given utmost importance and they can speak consciously as and when someone starts to record.The distinguishing feature of our app is its ability to detect recording of the meeting by anyone who uses our app. Our app can detect recordings even if the user has started the recording before the start of meeting as well.
+Recording Detection is a new concept in its entirety and there exists no such app till date that detects recordings done by its users. Thus, here lies the uniqueness of our app, with it being able to achieve a completely new feature.
 
-The traditional video communication software like google meet, Microsoft teams, and Webex also provides certain functionalities similar to our original idea. However, there are fine distinctions that make our product stand out. The market software as of now is able to identify a recording started through a remote host only if it was started by their own software and not any other independent software. This provides us with a key advantage over others as our software is capable of detecting recording through any software. We want to make customer-centric software that focuses on the ease of use and satisfaction of the customer. That is why the software can be used in two ways. One way is that it can host meetings on this software itself which makes it similar to other applications and also look out for recordings at the same time. The other way is that this software can be installed as a third-party application along with Teams, Webex, or google meet and be just used for surveillance of recording. This provides the customers with a lot of flexibility as some customers would not like to shift from their previous applications.
+A huge number of hurdles were to be overcome in order to design the software and since there were no proper references while making the app, we had to come up with completely new and feasible designs for our app to meet its purpose.
 
-The first major requirement of our project was to make a detection software. For this we analysed the various screen recording softwares that are in use currently. We studied the various processes that run in the background when a screen recorder is recording the screen. We mapped the screen recorders to the system processes that they use when screen recording is being done. These processes were listed and our detection algorithm plans to detect these processes running in the background. The next concern of our project was how to make this software in use. We are made a platform itself so as to conduct meetings and online classes, in which our recording software would run in the background and notify the organiser when someone starts recording. Some people would not like to switch platforms from the current platform in which they are conducting their class. To tackle this, we have our second version of our software which can be used as a third-party application to take attendance, which would notify the meeting organiser about any screen recording being done.
+Firstly, there was no way a browser could detect the processes running in one&#39;s system, thus we had to make the app in an environment that supported the listing of system processes such that recorder processes could be detected. Thus, we decided to overcome this hurdle by using electron and then using the npm package **ps-list**. Now the recorders, if found in a user&#39;s system, could be detected easily.
 
-## However, there are certain limitations as although this software is like a superset, it does not implement all the extra utilities that are present in others like a whiteboard, integration with ms-office, and many such small features. This also may make some of the customers feel hesitant to use the application. The lack of human resources as compared to the big firms is the key reason. Another important factor that will catch the eyes of customers is whether the software is up to the industry standard or not. This comes as a competitive barrier that has to be overcome by providing a certain level of quality, persistence, security, and assurance as is set by the industry. This can be done by rigorous phases of testing through the benchmarks already set in the industry. However, there is a huge scope for improvement in terms of both the features added and the upscaling of the software over several platforms to ensure secure video communication.
+The next major target was the designing of the recording detection software which has been described above in detail in the implementation section of the recording detection. This had given rise to many other major hurdles like the browser cookies not being properly set, thus creating problems in making requests to the backend while notifying the recording detection and stopping. This was resolved by using browser cookies to let the backend know the meeting in which the user is present and thus properly connecting to the socket of the meeting. After the establishment of socket connections, the notification was handled properly now.
+
+The final major obstacle to developing the recording software was detecting if the user has already started recording before even joining any meeting. This was resolved by using a dummy meeting and presetting the cookies to some predefined default values. Then the user could easily make requests to the backend to set a flag, thus knowing at the start of the meeting about the user recording detection by checking this flag at the backend. The communication of the same could be easily done using the predefined web-sockets that are setup for the meeting.
+
+Many other innovative techniques were used to fix bugs and other issues that arose and finally our software could be made bug-free and elegant.
 
 ## **References of datasets or resources**
 

@@ -1,9 +1,10 @@
 ---
 title: Design Doculment
-layout: template
+layout: default
 filename: design-doc.md
 --- 
-# Design Document
+
+ [Home Page](index) [Design Document](design-doc)
 
 ## Summary
 
@@ -16,8 +17,6 @@ The Meeting Sphinx is based on this very idea and can detect recording by any pe
 The organiser can either use our own app to conduct meetings or can even use a third party app for meetings, in which case, our app can be used as an attendance system (mainly for conducting online classes) where the organiser would be notified of any ongoing recordings.
 
 _Thus the security of all users is established._
-
-##
 
 
 ## High level design

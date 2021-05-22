@@ -32,56 +32,47 @@ Thus the security of all users is established.
 1.**Login**
 
   1. Mainline Sequence:
-
-    1. User clicks on the &#39;Log in with Google&#39; Button, and is redirected to a Google webpage.
-    2. User logs into his google account and approves our app to be trusted with the user&#39;s google profile information.
-    3. After logging into google, the user will be redirected back to our app&#39;s home page.
+      1. User clicks on the &#39;Log in with Google&#39; Button, and is redirected to a Google webpage.
+      2. User logs into his google account and approves our app to be trusted with the user&#39;s google profile information.
+      3. After logging into google, the user will be redirected back to our app&#39;s home page.
   2. At step ii of Mainline Sequence
-    
-    1. Credentials entered by the user was incorrect and login fails
-    2. User is redirected to the login page to re enter credentials
+      1. Credentials entered by the user was incorrect and login fails
+      2. User is redirected to the login page to re enter credentials
 2.**Logout**
   1. Mainline Sequence:
-    
-    1. When a user clicks the logout button, a request is sent to the backend to log him out. Then, at the backend, his session is deleted and hence, he/she is logged out of our app.
+      1. When a user clicks the logout button, a request is sent to the backend to log him out. Then, at the backend, his session is deleted and hence, he/she is logged out of our app.
 
 3.**Create Meeting**
-  1. Mainline sequence -1: App is used as a third party app
-    
-    1. When the user creates a meeting, a random code is generated for that particular meeting and details of that meeting with its creator, description, etc. are stored in the backend.
-    2. We give the user the function to upload a custom third-party meeting url into an input box. Users will be redirected to this meeting url once they enter the code generated in the first part.
-  2. Mainline sequence - 2: Meeting is held in our app platform
+  1. Mainline sequence : App is used as a third party app 
+      1. When the user creates a meeting, a random code is generated for that particular meeting and details of that meeting with its creator, description, etc. are stored in the backend.
+      2. We give the user the function to upload a custom third-party meeting url into an input box. Users will be redirected to this meeting url once they enter the code generated in the first part.
+  2. Mainline sequence : Meeting is held in our app platform
  (If the creator wants to use our web conferencing platform to host his / her meeting, he / she need not fill that meeting link box. )
-    
-    1. App: A custom url for the meeting will be generated and associated with the meeting automatically.
-    2. Organiser: Meeting link is shared with the attendees
-    3. Attendee:Enters the code for a meeting that is hosted on our platform
-    4. Attendee will be redirected to our platform once his credentials are validated.
+      1. App: A custom url for the meeting will be generated and associated with the meeting automatically.
+      2. Organiser: Meeting link is shared with the attendees
+      3. Attendee:Enters the code for a meeting that is hosted on our platform
+      4. Attendee will be redirected to our platform once his credentials are validated.
     
 4.**Attend Meeting**
   1. Mainline Sequence:
-    
-    1. The attendee will use the lobby code to enter the lobby.
-    2. The backend finds the room that corresponds to the entered code.
-    3. If a valid meeting is found, then the user is redirected to the meeting lobby.
-    4. When the meeting is running, daemons on the devices of each user check to see whether a screen is being recorded or not.
-    5. The information on screen recording is relayed back to the organiser&#39;s screen.
-    6. Attendees of the meeting can send messages in the meeting chat.
-    7. The meeting can be ended by the organiser.
+      1. The attendee will use the lobby code to enter the lobby.
+      2. The backend finds the room that corresponds to the entered code.
+      3. If a valid meeting is found, then the user is redirected to the meeting lobby.
+      4. When the meeting is running, daemons on the devices of each user check to see whether a screen is being recorded or not.
+      5. The information on screen recording is relayed back to the organiser&#39;s screen.
+      6. Attendees of the meeting can send messages in the meeting chat.
+      7. The meeting can be ended by the organiser.
   2. Step iii of mainline sequence
-    
-    1. If a meeting is not found, the user is redirected back to the home page.
+      1. If a meeting is not found, the user is redirected back to the home page.
 
 5.**Video Call ( For meetings held in our app )**
 
-  1. Mainline Sequence:
-    
-    1. Users will allow our software access to their camera.
-    2. Users can view other attendees&#39; videos by clicking on the see attendee videos button
+  1. Mainline Sequence:  
+      1. Users will allow our software access to their camera.
+      2. Users can view other attendees&#39; videos by clicking on the see attendee videos button
   2. At the ii step of Mainline Sequence:
-    
-    1. Users either don&#39;t allow access to the camera or their camera is being used by some other application.
-    2. User is redirected to the home page of our app ( for our app meetings )
+      1. Users either don&#39;t allow access to the camera or their camera is being used by some other application.
+      2. User is redirected to the home page of our app ( for our app meetings )
 
 ## Class Diagram of our Backend
 

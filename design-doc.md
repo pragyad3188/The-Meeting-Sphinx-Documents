@@ -52,8 +52,8 @@ Thus the security of all users is established.
     2. Organiser: Meeting link is shared with the attendees
     3. Attendee:Enters the code for a meeting that is hosted on our platform
     4. Attendee will be redirected to our platform once his credentials are validated.
+    
 4.**Attend Meeting**
-
   1. Mainline Sequence:
     1. The attendee will use the lobby code to enter the lobby.
     2. The backend finds the room that corresponds to the entered code.

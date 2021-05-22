@@ -3,7 +3,7 @@ title: Project Proposal
 layout: default
 filename: pp
 ---
-| [Home Page](index) | [Project Proposal](pp) | [Feasibility Study](fs) | [Design Document](design-doc) |
+| [Home Page](index) | [Project Proposal](pp) | [Feasibility Study](fs) | [Design Document](design-doc) | [Final Report](final) |
 
 # Our Proposal
 

@@ -1,7 +1,7 @@
 ---
 title: Design Doculment
 layout: default
-filename: design-doc.md
+filename: design-doc
 --- 
 
  [Home Page](index) [Design Document](design-doc)
